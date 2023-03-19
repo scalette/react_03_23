@@ -9,9 +9,11 @@ export function loader({ request }: { request: { url: string } }) {
   return { q };
 }
 
-
 class RootClassComponent extends Component {
   render(): ReactNode {
+    const getSearch = localStorage.getItem("search");
+    console.log("from LS: ", getSearch);
+
     return (
       <>
         <div id="sidebar">
@@ -26,6 +28,7 @@ class RootClassComponent extends Component {
                 placeholder="Search"
                 type="search"
                 name="q"
+                defaultValue={getSearch ?? ""}
               />
               <div id="search-spinner" aria-hidden hidden={true} />
               <div className="sr-only" aria-live="polite"></div>

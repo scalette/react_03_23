@@ -6,7 +6,6 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import CardList from "./components/card-list/card-list.component";
 import { Monster } from "./routes/types";
-import { loader as rootLoader } from "./routes/root";
 
 const monsters: Monster[] = [
   {
@@ -45,7 +44,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    loader: rootLoader,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -53,7 +51,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CardList monsters={monsters} />,
+            element: <CardList monsters={monsters} search={""} fundamentMonsters={monsters} />,
           },
         ],
       },
