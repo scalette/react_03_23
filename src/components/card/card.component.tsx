@@ -1,5 +1,5 @@
-import { Monster } from "../../routes/types";
-import { CardContainer } from "./card.styles";
+import { Monster } from '../../routes/types';
+import { CardContainer } from './card.styles';
 
 type CardProps = {
   monster: Monster;

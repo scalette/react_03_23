@@ -1,4 +1,4 @@
-import { Component, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 
 class ErrorPage extends Component {
   render(): ReactNode {

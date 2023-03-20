@@ -1,7 +1,7 @@
-import { Component } from "react";
-import Card from "../card/card.component";
-import { CardListStyled } from "./card.list.style";
-import { Monster } from "../../routes/types";
+import { Component } from 'react';
+import Card from '../card/card.component';
+import { CardListStyled } from './card.list.style';
+import { Monster } from '../../routes/types';
 
 type CardListProps = {
   monsters: Monster[];
@@ -14,7 +14,7 @@ class CardList extends Component<CardListProps, CardListProps> {
     super(props);
     const { monsters, search } = props;
     this.monsters = monsters;
-    console.log("srch:", search);
+    console.log('srch:', search);
     this.state = {
       monsters,
       search,
@@ -22,26 +22,26 @@ class CardList extends Component<CardListProps, CardListProps> {
     };
   }
   componentDidMount(): void {
-    const search = document.querySelector("#search-form");
+    const search = document.querySelector('#search-form');
     search?.addEventListener(
-      "input",
+      'input',
       (e: Event): void => {
-        console.log("setState", localStorage.getItem("search") as string);
-        console.log("setState", this.state);
+        console.log('setState', localStorage.getItem('search') as string);
+        console.log('setState', this.state);
         this.setState({
           monsters: this.state.fundamentMonsters.filter((monster) =>
-            monster.name.includes(localStorage.getItem("search") as string)
+            monster.name.includes(localStorage.getItem('search') as string)
           ),
         });
-        localStorage.setItem("search", (e.target as HTMLTextAreaElement).value);
+        localStorage.setItem('search', (e.target as HTMLTextAreaElement).value);
       },
       false
     );
   }
 
   render() {
-    const getSearch = localStorage.getItem("search");
-    console.log("from CardList LS: ", getSearch);
+    const getSearch = localStorage.getItem('search');
+    console.log('from CardList LS: ', getSearch);
 
     return (
       <CardListStyled>
