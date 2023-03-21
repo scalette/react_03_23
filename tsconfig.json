@@ -19,7 +19,11 @@
     "outDir": "./out",
     "jsx": "react-jsx"
   },
-  "include": ["src", "styled.d.ts"],
+  "include": [
+    "vite.config.ts",
+    ".eslintrc.cjs",
+    "src"
+  ],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

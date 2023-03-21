@@ -1,7 +1,7 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/**/__tests__/*.test.ts'],
+  testMatch: ['<rootDir>/**/__tests__/*.test.tsx'],
   testPathIgnorePatterns: ['/node_modules/'],
   coverageDirectory: './coverage',
   coveragePathIgnorePatterns: ['node_modules', 'src/database', 'src/test', 'src/types'],
