@@ -7,6 +7,7 @@ import ErrorPage from './error-page';
 import CardList from './components/card-list/card-list.component';
 import { Monster } from './routes/types';
 import About from './routes/about';
+import Forms from './components/forms/forms.component';
 
 const monsters: Monster[] = [
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
           {
             path: 'about',
             element: <About />,
+          },
+          {
+            path: 'forms',
+            element: <Forms />,
           },
         ],
       },

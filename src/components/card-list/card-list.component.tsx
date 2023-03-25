@@ -14,7 +14,6 @@ class CardList extends Component<CardListProps, CardListProps> {
     super(props);
     const { monsters, search } = props;
     this.monsters = monsters;
-    console.log('srch:', search);
     this.state = {
       monsters,
       search,
@@ -26,8 +25,6 @@ class CardList extends Component<CardListProps, CardListProps> {
     search?.addEventListener(
       'input',
       (e: Event): void => {
-        console.log('setState', localStorage.getItem('search') as string);
-        console.log('setState', this.state);
         this.setState({
           monsters: this.state.fundamentMonsters.filter((monster) =>
             monster.name.includes(localStorage.getItem('search') as string)
@@ -41,8 +38,6 @@ class CardList extends Component<CardListProps, CardListProps> {
 
   render() {
     const getSearch = localStorage.getItem('search');
-    console.log('from CardList LS: ', getSearch);
-
     return (
       <CardListStyled>
         {this.state.monsters.map((monster) => {

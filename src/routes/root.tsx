@@ -45,6 +45,9 @@ class RootClassComponent extends Component {
               <li>
                 <a href={`/`}>Main</a>
               </li>
+              <li>
+                <a href={`/forms`}>Forms</a>
+              </li>
             </ul>
           </nav>
         </div>
