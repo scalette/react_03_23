@@ -1,5 +1,13 @@
 export type Monster = {
   id: string;
   name: string;
-  email: string;
+  date: string;
+  gender: string;
+  permitions: {
+    read: boolean;
+    write: boolean;
+    execute: boolean;
+  };
+  fruit: string;
+  file: string;
 };

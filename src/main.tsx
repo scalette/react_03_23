@@ -13,33 +13,41 @@ const monsters: Monster[] = [
   {
     id: '1',
     name: 'Ilya',
-    email: 'ilia@mail.ru',
+    date: '11.01.2001',
+    gender: 'male',
+    permitions: {
+      read: true,
+      write: false,
+      execute: true,
+    },
+    fruit: 'Orange',
+    file: 'sdasd.txt',
   },
-  {
-    id: '2',
-    name: 'Vikotor',
-    email: 'viktor@mail.ru',
-  },
-  {
-    id: '3',
-    name: 'Olga',
-    email: 'olga@mail.ru',
-  },
-  {
-    id: '4',
-    name: 'Ilya',
-    email: 'ilia@mail.ru',
-  },
-  {
-    id: '5',
-    name: 'Vikotor',
-    email: 'viktor@mail.ru',
-  },
-  {
-    id: '6',
-    name: 'Olga',
-    email: 'olga@mail.ru',
-  },
+  // {
+  //   id: '2',
+  //   name: 'Vikotor',
+  //   email: 'viktor@mail.ru',
+  // },
+  // {
+  //   id: '3',
+  //   name: 'Olga',
+  //   email: 'olga@mail.ru',
+  // },
+  // {
+  //   id: '4',
+  //   name: 'Ilya',
+  //   email: 'ilia@mail.ru',
+  // },
+  // {
+  //   id: '5',
+  //   name: 'Vikotor',
+  //   email: 'viktor@mail.ru',
+  // },
+  // {
+  //   id: '6',
+  //   name: 'Olga',
+  //   email: 'olga@mail.ru',
+  // },
 ];
 
 const router = createBrowserRouter([

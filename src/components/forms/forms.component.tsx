@@ -6,39 +6,70 @@ import SelectForm from '../select-form/upload-form.component';
 import DatePicker from '../date-input/date-input.component';
 import CheckBox from '../check-box/check-box.component';
 import RadioButtons from '../radio-buttons/radio-buttons.component';
+import { Monster } from '../../routes/types';
 
 function Forms() {
-  const emailRef = useRef(null);
-  const phoneNumberRef = useRef(null);
-  const firstNameRef = useRef(null);
-  const lastNameRef = useRef(null);
-  const referralRef = useRef(null);
-  const passwordRef = useRef(null);
+  const nameRef = useRef(null);
+  const genderRef = useRef(null);
+  const checkBoxesRef = useRef(null);
+  const dateRef = useRef(null);
+  const selectRef = useRef(null);
+  const uploadRef = useRef(null);
 
+  const nameValidation = (name, errors) => {
+    if (name.length === 0) {
+      errors.push('Name is mandatory field!');
+    }
+  };
   const onSubmit = (event) => {
-    console.log(passwordRef)
-    console.log(referralRef)
-    console.log(lastNameRef)
-    console.log(firstNameRef)
-    console.log(phoneNumberRef)
-    alert(
-      `Current values of the form ${emailRef.current.value}, ${phoneNumberRef.current.value}, ${firstNameRef.current.value}, ${lastNameRef.current.value}, ${referralRef}, ${passwordRef.current.value}`
-    );
+    const errors: string[] = [];
+    const name = nameRef.current.value;
+    const gender = genderRef.current.female.current.checked ? 'female' : 'male';
+    const permitions = {
+      read: checkBoxesRef.current.read.current.inputValue.current.checked,
+      write: checkBoxesRef.current.write.current.inputValue.current.checked,
+      execute: checkBoxesRef.current.execute.current.inputValue.current.checked,
+    };
+    const date = dateRef.current.inputValue.current.value;
+    const fruit = selectRef.current.inputValue.current.value;
+    const upload = uploadRef.current.inputValue.current.value.split('fakepath\\')[1];
+    nameValidation(name, errors);
+    const monsters = localStorage.getItem('monsters');
+    console.log('monsters:', monsters);
+    const monstersParsed = JSON.parse(monsters ?? '[]');
+    const nextId = String(monstersParsed.length);
+    const newMonster: Monster = {
+      id: nextId,
+      name,
+      gender,
+      permitions,
+      date,
+      fruit,
+      file: upload,
+    };
+    console.log('monstersParsed before:', monstersParsed);
+    monstersParsed.push(newMonster)
+    console.log('monstersParsed:', monstersParsed);
+    localStorage.setItem('monsters', JSON.stringify(monstersParsed));
+
+    console.log('monsters:', monstersParsed);
+    document.location.href = '\\';
     event.preventDefault();
+
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <FormsStyled onSubmit={onSubmit}>
       {/* register our input field with register function provided by the useForm hook */}
-      <input placeholder="Enter email" ref={emailRef} />
-      <RadioButtons ref={phoneNumberRef} />
-      <CheckBox ref={firstNameRef} />
-      <DatePicker ref={lastNameRef} />
-      <SelectForm ref={referralRef} />
-      <UploadForm ref={passwordRef} />
+      <input placeholder="Your name" ref={nameRef} />
+      <RadioButtons ref={genderRef} />
+      <CheckBox ref={checkBoxesRef} />
+      <DatePicker ref={dateRef} />
+      <SelectForm ref={selectRef} />
+      <UploadForm ref={uploadRef} />
 
       <input type="submit" />
-    </form>
+    </FormsStyled>
   );
 }
 

@@ -12,7 +12,9 @@ class CardList extends Component<CardListProps, CardListProps> {
   public monsters: Monster[];
   constructor(props: CardListProps) {
     super(props);
-    const { monsters, search } = props;
+    const { search } = props;
+    const monstersJson = localStorage.getItem('monsters');
+    const monsters = JSON.parse(monstersJson ?? '[]');
     this.monsters = monsters;
     this.state = {
       monsters,

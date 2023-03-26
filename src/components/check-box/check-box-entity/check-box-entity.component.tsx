@@ -10,7 +10,7 @@ class ChackBoxEntity extends React.Component {
       <div>
         <label>
           <input type="checkbox" ref={this.inputValue}/>
-          My Value
+          {this.props.fieldName}
         </label>
       </div>
     );

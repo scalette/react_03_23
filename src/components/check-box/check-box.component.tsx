@@ -4,16 +4,16 @@ import ChackBoxEntity from './check-box-entity/check-box-entity.component';
 class CheckBox extends React.Component {
   constructor(props) {
     super(props);
-    this.inputValue1 = React.createRef();
-    this.inputValue2 = React.createRef();
-    this.inputValue3 = React.createRef();
+    this.read = React.createRef();
+    this.write = React.createRef();
+    this.execute = React.createRef();
   }
   render() {
     return (
       <div>
-        <ChackBoxEntity ref={this.inputValue1}/>
-        <ChackBoxEntity ref={this.inputValue2}/>
-        <ChackBoxEntity ref={this.inputValue3}/>
+        <ChackBoxEntity fieldName={'read'} ref={this.read}/>
+        <ChackBoxEntity fieldName={'write'} ref={this.write}/>
+        <ChackBoxEntity fieldName={'execute'} ref={this.execute}/>
       </div>
     );
   }
