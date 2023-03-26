@@ -36,7 +36,6 @@ function Forms() {
     const upload = uploadRef.current.inputValue.current.value.split('fakepath\\')[1];
     nameValidation(name, errors);
     const monsters = localStorage.getItem('monsters');
-    console.log('monsters:', monsters);
     const monstersParsed = JSON.parse(monsters ?? '[]');
     const nextId = String(monstersParsed.length);
     const newMonster: Monster = {
@@ -48,12 +47,9 @@ function Forms() {
       fruit,
       file: upload,
     };
-    console.log('monstersParsed before:', monstersParsed);
     monstersParsed.push(newMonster);
-    console.log('monstersParsed:', monstersParsed);
     localStorage.setItem('monsters', JSON.stringify(monstersParsed));
 
-    console.log('monsters:', monstersParsed);
     document.location.href = '\\';
     event.preventDefault();
   };

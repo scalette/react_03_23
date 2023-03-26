@@ -41,11 +41,14 @@ class CardList extends Component<CardListProps, CardListProps> {
   render() {
     const getSearch = localStorage.getItem('search');
     return (
-      <CardListStyled>
-        {this.state.monsters.map((monster) => {
-          return <Card key={monster.id} monster={monster} />;
-        })}
-      </CardListStyled>
+      <>
+        <h1>Monsters</h1>
+        <CardListStyled>
+          {this.state.monsters.map((monster) => {
+            return <Card key={monster.id} monster={monster} />;
+          })}
+        </CardListStyled>
+      </>
     );
   }
 }

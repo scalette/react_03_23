@@ -3,16 +3,13 @@ import { Outlet } from 'react-router-dom';
 
 export function loader({ request }: { request: { url: string } }) {
   const url = new URL(request.url);
-  console.log(url);
   const q = url.searchParams.get('q');
-  console.log(q);
   return { q };
 }
 
 class RootClassComponent extends Component {
   render(): ReactNode {
     const getSearch = localStorage.getItem('search');
-    console.log('from LS: ', getSearch);
 
     return (
       <>
