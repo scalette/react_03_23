@@ -16,14 +16,19 @@ function Forms() {
   const dateRef = useRef(null);
   const selectRef = useRef(null);
   const uploadRef = useRef(null);
+  const errors: string[] = [];
 
   const nameValidation = (name: string, errors: string[]) => {
     if (name.length === 0) {
       errors.push('Name is mandatory field!');
     }
   };
+  const dateValidation = (date: string, errors: string[]) => {
+    if (!date) {
+      errors.push('Date is mandatory field!');
+    }
+  };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const errors: string[] = [];
     const name = nameRef.current.value as string;
     const gender = genderRef.current.female.current.checked ? 'female' : 'male';
     const permitions = {
@@ -35,6 +40,15 @@ function Forms() {
     const fruit = selectRef.current.inputValue.current.value;
     const upload = uploadRef.current.inputValue.current.value.split('fakepath\\')[1];
     nameValidation(name, errors);
+    dateValidation(date, errors);
+    if (errors.length != 0) {
+      event.preventDefault();
+      console.log(errors);
+      alert(`Please fill out the fields: \n${errors.join('\n')}`);
+      document.location.href = '\\forms';
+      return;
+    }
+    alert('Monster was added');
     const monsters = localStorage.getItem('monsters');
     const monstersParsed = JSON.parse(monsters ?? '[]');
     const nextId = String(monstersParsed.length);
@@ -53,11 +67,11 @@ function Forms() {
     document.location.href = '\\';
     event.preventDefault();
   };
-
+  console.log(errors);
   return (
     <FormsStyled onSubmit={onSubmit}>
-      {/* register our input field with register function provided by the useForm hook */}
       <input placeholder="Your name" ref={nameRef} />
+      {errors.length === 0 ? null : <p>Name is mandatory field!</p>}
       <RadioButtons ref={genderRef} />
       <CheckBox ref={checkBoxesRef} />
       <DatePicker ref={dateRef} />
