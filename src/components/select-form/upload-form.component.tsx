@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
+import { Componentprops } from '../radio-buttons/radio-buttons.component';
 
 class SelectForm extends Component {
-  constructor(props) {
+  inputValue: RefObject<HTMLSelectElement>;
+  constructor(props: Componentprops) {
     super(props);
-    //binding the function so that accessible with this.function name
-    this.manageSubmit = this.manageSubmit.bind(this);
-    //Creating the react input dom with the createRef function
-    this.inputValue = React.createRef();
+    this.inputValue = React.createRef<HTMLSelectElement>();
   }
-
-  manageSubmit(e) {
-    e.preventDefault();
-    const file = this.inputValue.current.files[0].name;
-    //upload file on server
-  }
-  
   render() {
     return (
       <label>

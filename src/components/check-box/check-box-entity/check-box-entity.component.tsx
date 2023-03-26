@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 
+interface ChackBoxEntityProps {
+  fieldName: string;
+}
 class ChackBoxEntity extends React.Component {
-  constructor(props) {
+  inputValue: RefObject<HTMLInputElement>;
+  props: ChackBoxEntityProps;
+  constructor(props: ChackBoxEntityProps) {
     super(props);
-    this.inputValue = React.createRef();
+    this.props = props;
+    this.inputValue = React.createRef<HTMLInputElement>();
   }
   render() {
     return (
       <div>
         <label>
-          <input type="checkbox" ref={this.inputValue}/>
+          <input type="checkbox" ref={this.inputValue} />
           {this.props.fieldName}
         </label>
       </div>

@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
+import { Componentprops } from '../radio-buttons/radio-buttons.component';
 
 class DatePicker extends Component {
-  constructor(props) {
+  inputValue: RefObject<HTMLInputElement>;
+  constructor(props: Componentprops) {
     super(props);
-    this.inputValue = React.createRef();
+    this.inputValue = React.createRef<HTMLInputElement>();
   }
 
   render() {

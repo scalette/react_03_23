@@ -1,21 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
+import { Componentprops } from '../radio-buttons/radio-buttons.component';
 
 class UploadForm extends Component {
-  //Constructor for initialization of the states of the components
-  constructor(props) {
+  inputValue: RefObject<HTMLInputElement>;
+  constructor(props: Componentprops) {
     super(props);
-    //binding the function so that accessible with this.function name
-    this.manageSubmit = this.manageSubmit.bind(this);
-    //Creating the react input dom with the createRef function
-    this.inputValue = React.createRef();
-  }
-  manageSubmit(e) {
-    e.preventDefault();
+    this.inputValue = React.createRef<HTMLInputElement>();
   }
   render() {
-    const uncontrolledForm = {
-      backgroundColor: 'red',
-    };
     return <input className="uncontrolled=input" type="file" ref={this.inputValue} />;
   }
 }

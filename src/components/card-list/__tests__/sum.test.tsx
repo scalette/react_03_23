@@ -17,7 +17,15 @@ describe('expect to render CardList', () => {
     {
       id: '1',
       name: 'Ilya',
-      email: 'ilia@mail.ru',
+      date: '11.01.2001',
+      gender: 'male',
+      permitions: {
+        read: true,
+        write: false,
+        execute: true,
+      },
+      fruit: 'Orange',
+      file: 'sdasd.txt',
     },
   ];
 

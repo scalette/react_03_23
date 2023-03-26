@@ -34,7 +34,9 @@ class RootClassComponent extends Component {
               <div className="sr-only" aria-live="polite"></div>
             </form>
             <form method="post">
-              <button type="submit">New</button>
+              <button type="submit">
+                <a href={`/forms`}>NEW</a>
+              </button>
             </form>
           </div>
           <nav>

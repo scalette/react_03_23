@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, useRef } from 'react';
 import UploadForm from '../upload/upload-form.component';
 import { FormsStyled } from './forms.style';
@@ -16,14 +17,14 @@ function Forms() {
   const selectRef = useRef(null);
   const uploadRef = useRef(null);
 
-  const nameValidation = (name, errors) => {
+  const nameValidation = (name: string, errors: string[]) => {
     if (name.length === 0) {
       errors.push('Name is mandatory field!');
     }
   };
-  const onSubmit = (event) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const errors: string[] = [];
-    const name = nameRef.current.value;
+    const name = nameRef.current.value as string;
     const gender = genderRef.current.female.current.checked ? 'female' : 'male';
     const permitions = {
       read: checkBoxesRef.current.read.current.inputValue.current.checked,
@@ -48,14 +49,13 @@ function Forms() {
       file: upload,
     };
     console.log('monstersParsed before:', monstersParsed);
-    monstersParsed.push(newMonster)
+    monstersParsed.push(newMonster);
     console.log('monstersParsed:', monstersParsed);
     localStorage.setItem('monsters', JSON.stringify(monstersParsed));
 
     console.log('monsters:', monstersParsed);
     document.location.href = '\\';
     event.preventDefault();
-
   };
 
   return (
