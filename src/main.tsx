@@ -8,6 +8,7 @@ import CardList from './components/card-list/card-list.component';
 import { Monster } from './routes/types';
 import About from './routes/about';
 import Forms from './components/forms/forms.component';
+import { getData } from './utils/api/data';
 
 const monsters: Monster[] = [
   {
@@ -61,7 +62,9 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CardList monsters={monsters} search={''} fundamentMonsters={monsters} />,
+            loader: getData,
+            element: <CardList />,
+            //element: <CardList monsters={monsters} search={''} fundamentMonsters={monsters} />,
           },
           {
             path: 'about',
