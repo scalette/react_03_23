@@ -1,17 +1,22 @@
 // @ts-nocheck
-import { Component, useRef } from 'react';
+import { Component, useRef, useState } from 'react';
 import UploadForm from '../upload/upload-form.component';
 import { FormsStyled } from './forms.style';
 import React from 'react';
 import SelectForm from '../select-form/upload-form.component';
 import DatePicker from '../date-input/date-input.component';
 import CheckBox from '../check-box/check-box.component';
-import RadioButtons from '../radio-buttons/radio-buttons.component';
+import { RadioButtons } from '../radio-buttons/radio-buttons.component';
 import { Monster } from '../../routes/types';
 
 function Forms() {
-  const nameRef = useRef(null);
-  const genderRef = useRef(null);
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState(null);
+  const [permitions, setPermitions] = useState({
+    read: false,
+    write: false,
+    execute: false,
+  })
   const checkBoxesRef = useRef(null);
   const dateRef = useRef(null);
   const selectRef = useRef(null);
@@ -29,13 +34,6 @@ function Forms() {
     }
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const name = nameRef.current.value as string;
-    const gender = genderRef.current.female.current.checked ? 'female' : 'male';
-    const permitions = {
-      read: checkBoxesRef.current.read.current.inputValue.current.checked,
-      write: checkBoxesRef.current.write.current.inputValue.current.checked,
-      execute: checkBoxesRef.current.execute.current.inputValue.current.checked,
-    };
     const date = dateRef.current.inputValue.current.value;
     const fruit = selectRef.current.inputValue.current.value;
     const upload = uploadRef.current.inputValue.current.value.split('fakepath\\')[1];
@@ -68,12 +66,13 @@ function Forms() {
     event.preventDefault();
   };
   console.log(errors);
+
   return (
     <FormsStyled onSubmit={onSubmit}>
-      <input placeholder="Your name" ref={nameRef} />
+      <input placeholder="Your name" onChange={(e) => setName(e.target.value)} />
       {errors.length === 0 ? null : <p>Name is mandatory field!</p>}
-      <RadioButtons ref={genderRef} />
-      <CheckBox ref={checkBoxesRef} />
+      <RadioButtons setGenderProp={setGender} />
+      <CheckBox setPermitionsProp={setPermitions} />
       <DatePicker ref={dateRef} />
       <SelectForm ref={selectRef} />
       <UploadForm ref={uploadRef} />
