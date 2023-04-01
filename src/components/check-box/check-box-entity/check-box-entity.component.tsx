@@ -25,7 +25,6 @@ interface ChackBoxEntityProps {
 // }
 
 const ChackBoxEntity = ({ fieldName, setPermitionsProp }: ChackBoxEntityProps) => {
-  console.log('ChackBoxEntity test');
   return (
     <div>
       <label>

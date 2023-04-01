@@ -16,11 +16,10 @@ function Forms() {
     read: false,
     write: false,
     execute: false,
-  })
-  const checkBoxesRef = useRef(null);
-  const dateRef = useRef(null);
-  const selectRef = useRef(null);
-  const uploadRef = useRef(null);
+  });
+  const [date, setDate] = useState(null);
+  const [fruit, setFruit] = useState('orange');
+  const [file, setFile] = useState('');
   const errors: string[] = [];
 
   const nameValidation = (name: string, errors: string[]) => {
@@ -34,9 +33,6 @@ function Forms() {
     }
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const date = dateRef.current.inputValue.current.value;
-    const fruit = selectRef.current.inputValue.current.value;
-    const upload = uploadRef.current.inputValue.current.value.split('fakepath\\')[1];
     nameValidation(name, errors);
     dateValidation(date, errors);
     if (errors.length != 0) {
@@ -57,7 +53,7 @@ function Forms() {
       permitions,
       date,
       fruit,
-      file: upload,
+      file: file.split('fakepath\\')[1],
     };
     monstersParsed.push(newMonster);
     localStorage.setItem('monsters', JSON.stringify(monstersParsed));
@@ -73,10 +69,9 @@ function Forms() {
       {errors.length === 0 ? null : <p>Name is mandatory field!</p>}
       <RadioButtons setGenderProp={setGender} />
       <CheckBox setPermitionsProp={setPermitions} />
-      <DatePicker ref={dateRef} />
-      <SelectForm ref={selectRef} />
-      <UploadForm ref={uploadRef} />
-
+      <DatePicker setDateProp={setDate} />
+      <SelectForm setFruitProp={setFruit} />
+      <UploadForm setFileProp={setFile} />
       <input type="submit" />
     </FormsStyled>
   );

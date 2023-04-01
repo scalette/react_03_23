@@ -24,7 +24,6 @@ const CardList = () => {
       false
     );
   }, []);
-  console.log(searchString);
 
   return (
     <>
