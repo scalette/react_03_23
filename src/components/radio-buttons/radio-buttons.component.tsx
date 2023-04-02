@@ -2,11 +2,11 @@
 import React, { ComponentLifecycle } from 'react';
 export type Componentprops<P = {}, S = {}> = ComponentLifecycle<P, S>;
 
-export const RadioButtons = ({ setGenderProp }) => {
+export const RadioButtons = ({ register }) => {
   return (
-    <div onChange={(e) => setGenderProp(e.target.value)}>
-      <input type="radio" value="Male" name="gender" defaultChecked /> Male
-      <input type="radio" value="Female" name="gender" /> Female
+    <div>
+      <input type="radio" value="Male" name="gender" defaultChecked {...register('gender')} /> Male
+      <input type="radio" value="Female" name="gender" {...register('gender')} /> Female
     </div>
   );
 };
