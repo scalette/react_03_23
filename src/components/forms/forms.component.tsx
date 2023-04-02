@@ -24,17 +24,7 @@ function Forms() {
     },
   });
   watch('permitions');
-  const onSubmit: SubmitHandler<Inputs> = ({
-    name,
-    gender,
-    permitions,
-    date,
-    fruit,
-    file,
-    error,
-  }) => {
-    console.log(error);
-    return;
+  const onSubmit: SubmitHandler<Inputs> = ({ name, gender, permitions, date, fruit, file }) => {
     alert('Monster was added');
     const monsters = localStorage.getItem('monsters');
     const monstersParsed = JSON.parse(monsters ?? '[]');
@@ -57,7 +47,6 @@ function Forms() {
 
     document.location.href = '\\';
   };
-  console.log(errors);
   return (
     <FormsStyled onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -69,7 +58,7 @@ function Forms() {
             message: 'max length is 10',
           },
           minLength: {
-            value: 10,
+            value: 6,
             message: 'min length is 6',
           },
         })}
