@@ -7,4 +7,7 @@ export const FormsStyled = styled.form`
   grid-template-columns: repeat(4, 1fr);
   column-gap: 30px;
   row-gap: 30px;
+  .alert{
+    color: red;
+  }
 `;
