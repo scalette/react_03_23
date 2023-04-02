@@ -1,4 +1,8 @@
 export type Inputs = {
-  example: string;
-  exampleRequired: string;
+  name: string;
+  permitions: (string | null)[];
+  gender: string;
+  file: FileList;
+  fruit: string;
+  date: string;
 };

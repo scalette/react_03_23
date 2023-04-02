@@ -1,11 +1,10 @@
-import React, { Component, RefObject } from 'react';
-import { Componentprops } from '../radio-buttons/radio-buttons.component';
+import { InputProps } from '../../routes/types';
 
-export default ({ register }) => {
+export default ({ register }: InputProps) => {
   return (
     <label>
       Pick a fruit:
-      <select name="selectedFruit" defaultValue="orange" {...register('fruit')}>
+      <select defaultValue="orange" {...register('fruit')}>
         <option value="apple">Apple</option>
         <option value="banana">Banana</option>
         <option value="orange">Orange</option>

@@ -1,9 +1,9 @@
 import React, { RefObject } from 'react';
 import { useController, useForm } from 'react-hook-form';
-import { Componentprops } from '../radio-buttons/radio-buttons.component';
+import { CheckBoxesProps } from '../../routes/types';
 import { CheckBox } from './checkBoxes.style';
 
-const CheckBoxes = ({ options, control, name }) => {
+const CheckBoxes = ({ options, control, name }: CheckBoxesProps) => {
   const { field } = useController({
     control,
     name,
@@ -12,7 +12,7 @@ const CheckBoxes = ({ options, control, name }) => {
 
   return (
     <CheckBox>
-      {options.map((option, index) => (
+      {options.map((option: string, index: number) => (
         <>
           <div key={index}>
             <input

@@ -1,6 +1,5 @@
-import React, { Component, RefObject } from 'react';
-import { Componentprops } from '../radio-buttons/radio-buttons.component';
+import { InputProps } from '../../routes/types';
 
-export default ({ register }) => {
+export default ({ register }: InputProps) => {
   return <input type="date" {...register('date')} />;
 };
