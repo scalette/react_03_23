@@ -70,6 +70,7 @@ function Forms() {
       {errors.date && <p className="alert">{errors.date.message}</p>}
       <SelectForm register={register} />
       <UploadForm register={register} />
+      {errors.file && <p className="alert">{errors.file.message}</p>}
       <input type="submit" />
     </FormsStyled>
   );

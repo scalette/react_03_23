@@ -1,4 +1,4 @@
-import { UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import { Inputs } from '../components/forms/forms.type';
 import { Control } from 'react-hook-form';
 
@@ -18,6 +18,7 @@ export type Monster = {
 
 export type InputProps = {
   register: UseFormRegister<Inputs>;
+  errors?: FieldErrors<FieldValues>;
 };
 
 export type CheckBoxesProps = {
