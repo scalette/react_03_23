@@ -1,24 +1,27 @@
-import { Monster } from '../../routes/types';
+import { Monster, PersonsSW } from '../../routes/types';
 import { CardContainer } from './card.styles';
 
 type CardProps = {
-  monster: Monster;
+  monster: PersonsSW;
+  monsterId: number;
 };
 
-const Card = ({ monster }: CardProps) => {
-  const { id, name, date, permitions, fruit, gender, file } = monster;
+const Card = ({ monster, monsterId }: CardProps) => {
+  const { name, created, starships, homeworld, gender, file } = monster;
   return (
-    <CardContainer key={id}>
-      <img src={`https://robohash.org/${id}?set=set1&size=180x180`} alt={`monster ${name}`} />
+    <CardContainer key={monsterId}>
+      <img
+        src={`https://robohash.org/${monsterId}?set=set1&size=180x180`}
+        alt={`monster ${name}`}
+      />
       <h2>{name}</h2>
-      <p>Date: {date}</p>
-      <p>
-        Permitions ReadWriteExecute: {permitions.read ? '+' : '-'}
-        {permitions.write ? '+' : '-'} {permitions.execute ? '+' : '-'}
-      </p>
+      <p>Created: {created}</p>
       <p>Gender: {gender}</p>
-      <p>Favourite fruit: {fruit}</p>
-      <p>Files: {file}</p>
+      <p>Starships:</p>
+      {starships.map((starship, index) => (
+        <p key={index}>{starship}</p>
+      ))}
+      <p>Homeworld: {homeworld}</p>
     </CardContainer>
   );
 };

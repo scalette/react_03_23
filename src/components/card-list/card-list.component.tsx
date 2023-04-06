@@ -1,8 +1,9 @@
 import { Component, useEffect, useState } from 'react';
 import Card from '../card/card.component';
 import { CardListStyled } from './card.list.style';
-import { Monster } from '../../routes/types';
+import { Monster, PersonsSW } from '../../routes/types';
 import { useLoaderData } from 'react-router-dom';
+import { getPersons, getPersonWithSearch } from '../utils/starWarsApi';
 
 type CardListProps = {
   monsters: Monster[];
@@ -14,27 +15,62 @@ const CardList = () => {
   const { monstersData } = useLoaderData() as { monstersData: Monster[] };
   const [monsters, setMonsters] = useState<Monster[]>(monstersData);
   const [searchString, setSearchString] = useState<string>('');
+  const [personsSW, setPersonsSW] = useState<PersonsSW[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    console.log('searchString', searchString);
+    console.log('personsSW', personsSW);
+    const searchClick = async (e: Event): Promise<void> => {
+      console.log('searchClick', e);
+      // setIsLoading(true);
+      const searchString = (e.target as HTMLTextAreaElement).firstChild?.value;
+      console.log('searchString', searchString);
+      setSearchString(searchString);
+      //setPersonsSW(res);
+      e.preventDefault();
+    };
     const search = document.querySelector('#search-form');
-    search?.addEventListener(
-      'input',
-      (e: Event): void => {
-        setSearchString((e.target as HTMLTextAreaElement).value);
-      },
-      false
-    );
+    search?.addEventListener('submit', searchClick, false);
+    const characters = async () => {
+      const persons = await getPersons();
+      setPersonsSW(persons);
+      setIsLoading(false);
+      console.log(persons);
+    };
+    characters();
+    return function cleanUp() {
+      if (search) {
+        console.log('input');
+        search.removeEventListener('submit', searchClick, false);
+      }
+    };
   }, []);
 
+  useEffect(() => {
+    const runEffect = async () => {
+      setIsLoading(true);
+      const res = await getPersonWithSearch(searchString);
+      setPersonsSW(res);
+      setIsLoading(false);
+    };
+    runEffect()
+  }, [searchString]);
   return (
     <>
-      <h1>Monsters</h1>
-      <CardListStyled>
-        {monsters
-          .filter((monster) => monster.name.includes(searchString))
-          .map((monster) => {
-            return <Card key={monster.id} monster={monster} />;
-          })}
-      </CardListStyled>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <h1>Monsters</h1>
+          <CardListStyled>
+            {personsSW
+              .filter((person) => person.name.includes(searchString))
+              .map((person, index) => {
+                return <Card key={index} monster={person} monsterId={index} />;
+              })}
+          </CardListStyled>
+        </>
+      )}
     </>
   );
 };

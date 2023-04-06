@@ -16,6 +16,24 @@ export type Monster = {
   file: string;
 };
 
+export type PersonsSW = {
+  birth_year: string;
+  created: string;
+  edited: string;
+  eye_color: string;
+  films: string[];
+  gender: string;
+  hair_color: string;
+  homeworld: string;
+  mass: string;
+  name: string;
+  skin_color: string;
+  url: string;
+  species: string[];
+  vehicles: string[];
+  starships: string[];
+};
+
 export type InputProps = {
   register: UseFormRegister<Inputs>;
   errors?: FieldErrors<FieldValues>;

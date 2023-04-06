@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 export function loader({ request }: { request: { url: string } }) {
   const url = new URL(request.url);
+  console.log('laoder')
   const q = url.searchParams.get('q');
   return { q };
 }
