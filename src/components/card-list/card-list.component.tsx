@@ -4,6 +4,7 @@ import { CardListStyled } from './card.list.style';
 import { Monster, PersonsSW } from '../../routes/types';
 import { useLoaderData } from 'react-router-dom';
 import { getPersons, getPersonWithSearch } from '../utils/starWarsApi';
+import Modal from '../modal/modal';
 
 type CardListProps = {
   monsters: Monster[];
@@ -12,6 +13,7 @@ type CardListProps = {
 };
 
 const CardList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const { monstersData } = useLoaderData() as { monstersData: Monster[] };
   const [monsters, setMonsters] = useState<Monster[]>(monstersData);
   const [searchString, setSearchString] = useState<string>('');
@@ -53,7 +55,7 @@ const CardList = () => {
       setPersonsSW(res);
       setIsLoading(false);
     };
-    runEffect()
+    runEffect();
   }, [searchString]);
   return (
     <>
@@ -71,6 +73,7 @@ const CardList = () => {
           </CardListStyled>
         </>
       )}
+      {isModalOpen && <Modal setIsOpen={setIsModalOpen} />}
     </>
   );
 };
