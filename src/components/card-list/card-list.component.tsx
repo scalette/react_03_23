@@ -13,7 +13,7 @@ type CardListProps = {
 };
 
 const CardList = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { monstersData } = useLoaderData() as { monstersData: Monster[] };
   const [monsters, setMonsters] = useState<Monster[]>(monstersData);
   const [searchString, setSearchString] = useState<string>('');
@@ -68,7 +68,14 @@ const CardList = () => {
             {personsSW
               .filter((person) => person.name.includes(searchString))
               .map((person, index) => {
-                return <Card key={index} monster={person} monsterId={index} />;
+                return (
+                  <Card
+                    key={index}
+                    monster={person}
+                    monsterId={index}
+                    setIsModalOpen={setIsModalOpen}
+                  />
+                );
               })}
           </CardListStyled>
         </>

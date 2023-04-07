@@ -4,24 +4,15 @@ import { CardContainer } from './card.styles';
 type CardProps = {
   monster: PersonsSW;
   monsterId: number;
+  setIsModalOpen: (value: boolean) => void;
 };
 
-const Card = ({ monster, monsterId }: CardProps) => {
-  const { name, created, starships, homeworld, gender, file } = monster;
+const Card = ({ monster, monsterId, setIsModalOpen }: CardProps) => {
+  const { name, created, starships, homeworld, gender } = monster;
   return (
-    <CardContainer key={monsterId}>
-      <img
-        src={`https://robohash.org/${monsterId}?set=set1&size=180x180`}
-        alt={`monster ${name}`}
-      />
+    <CardContainer key={monsterId} onClick={() => setIsModalOpen(true)}>
+      <img src={`https://robohash.org/${monsterId}?set=set1&size=280x280`} alt={`monster ${name}`} />
       <h2>{name}</h2>
-      <p>Created: {created}</p>
-      <p>Gender: {gender}</p>
-      <p>Starships:</p>
-      {starships.map((starship, index) => (
-        <p key={index}>{starship}</p>
-      ))}
-      <p>Homeworld: {homeworld}</p>
     </CardContainer>
   );
 };

@@ -3,7 +3,6 @@ import { RiCloseLine } from 'react-icons/ri';
 import {
   CloseButton,
   HeadingStyled,
-  ModalStyled,
   ModalStyledActions,
   ModalStyledActionsContainer,
   ModalStyledBtnCancel,
