@@ -52,7 +52,7 @@ export const ModalStyledCentered = styled.div`
 
 export const ModalStyledModal = styled.div`
   width: 250px;
-  height: 170px;
+  height: 320px;
   background: white;
   color: white;
   z-index: 10;

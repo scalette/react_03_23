@@ -1,11 +1,10 @@
-import { PersonsSW } from "../../routes/types";
+import { PersonsSW } from '../../routes/types';
 
 export const getPersons = async () => {
   const responce = await fetch('https://swapi.dev/api/people');
   const data = await responce.json();
   return data.results as PersonsSW[];
 };
-
 
 export const getPersonWithSearch = async (search: string) => {
   console.log(search);

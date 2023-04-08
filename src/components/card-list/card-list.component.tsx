@@ -7,7 +7,7 @@ import { getPersons, getPersonWithSearch } from '../utils/starWarsApi';
 import Modal from '../modal/modal';
 
 type CardListProps = {
-  monsters: Monster[];
+  monsters: Monster | null;
   search: string;
   fundamentMonsters: Monster[];
 };
@@ -15,7 +15,7 @@ type CardListProps = {
 const CardList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { monstersData } = useLoaderData() as { monstersData: Monster[] };
-  const [monsters, setMonsters] = useState<Monster[]>(monstersData);
+  const [monster, setMonster] = useState<PersonsSW | null>(null);
   const [searchString, setSearchString] = useState<string>('');
   const [personsSW, setPersonsSW] = useState<PersonsSW[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -74,13 +74,14 @@ const CardList = () => {
                     monster={person}
                     monsterId={index}
                     setIsModalOpen={setIsModalOpen}
+                    setMonster={setMonster}
                   />
                 );
               })}
           </CardListStyled>
         </>
       )}
-      {isModalOpen && <Modal setIsOpen={setIsModalOpen} />}
+      {isModalOpen && <Modal setIsOpen={setIsModalOpen} monster={monster} />}
     </>
   );
 };
