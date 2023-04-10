@@ -1,4 +1,5 @@
 import { ReactNode, Component } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 export function loader({ request }: { request: { url: string } }) {
@@ -9,7 +10,8 @@ export function loader({ request }: { request: { url: string } }) {
 }
 
 export default () => {
-  const getSearch = localStorage.getItem('search');
+  const getSearch = useSelector((state) => state.input.searchString);
+  console.log('getSearch:', getSearch);
 
   return (
     <>

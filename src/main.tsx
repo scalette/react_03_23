@@ -10,6 +10,8 @@ import { Monster } from './routes/types';
 import About from './routes/about';
 import Forms from './components/forms/forms.component';
 import { getData } from './utils/api/data';
+import { Provider } from 'react-redux';
+import store from './app/store';
 
 const monsters: Monster[] = [
   {
@@ -83,6 +85,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

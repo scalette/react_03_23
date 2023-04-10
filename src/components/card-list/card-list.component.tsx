@@ -5,6 +5,8 @@ import { Monster, PersonsSW } from '../../routes/types';
 import { useLoaderData } from 'react-router-dom';
 import { getPersons, getPersonWithSearch } from '../utils/starWarsApi';
 import Modal from '../modal/modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchStringUpdated } from '../../features/input/inputSlice';
 
 type CardListProps = {
   monsters: Monster | null;
@@ -19,6 +21,8 @@ const CardList = () => {
   const [searchString, setSearchString] = useState<string>('');
   const [personsSW, setPersonsSW] = useState<PersonsSW[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     console.log('searchString', searchString);
     console.log('personsSW', personsSW);
@@ -26,6 +30,8 @@ const CardList = () => {
       console.log('searchClick', e);
       // setIsLoading(true);
       const searchString = (e.target as HTMLTextAreaElement).firstChild?.value;
+      console.log('beforeDispath: ', searchString);
+      dispatch(searchStringUpdated({ searchString }));
       console.log('searchString', searchString);
       setSearchString(searchString);
       //setPersonsSW(res);
