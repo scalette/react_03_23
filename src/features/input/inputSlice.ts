@@ -9,10 +9,7 @@ const inputSlice = createSlice({
   initialState,
   reducers: {
     searchStringUpdated(state, action) {
-      console.log('action:', action)
       const { searchString } = action.payload;
-      console.log('state: searchString: ', searchString);
-      console.log('state:', state.searchString);
       return { searchString };
     },
   },

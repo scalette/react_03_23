@@ -7,6 +7,7 @@ import { getPersons, getPersonWithSearch } from '../utils/starWarsApi';
 import Modal from '../modal/modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchStringUpdated } from '../../features/input/inputSlice';
+import { useGetPersonsQuery } from '../../features/input/apiSlice';
 
 type CardListProps = {
   monsters: Monster | null;
@@ -22,19 +23,14 @@ const CardList = () => {
   const [personsSW, setPersonsSW] = useState<PersonsSW[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-
+  //@ts-ignore
+  const { data, isFetching, isSuccess } = useGetPersonsQuery();
+  console.log('reduxTest: ', data?.results);
   useEffect(() => {
-    console.log('searchString', searchString);
-    console.log('personsSW', personsSW);
     const searchClick = async (e: Event): Promise<void> => {
-      console.log('searchClick', e);
-      // setIsLoading(true);
       const searchString = (e.target as HTMLTextAreaElement).firstChild?.value;
-      console.log('beforeDispath: ', searchString);
       dispatch(searchStringUpdated({ searchString }));
-      console.log('searchString', searchString);
       setSearchString(searchString);
-      //setPersonsSW(res);
       e.preventDefault();
     };
     const search = document.querySelector('#search-form');
@@ -43,12 +39,10 @@ const CardList = () => {
       const persons = await getPersons();
       setPersonsSW(persons);
       setIsLoading(false);
-      console.log(persons);
     };
     characters();
     return function cleanUp() {
       if (search) {
-        console.log('input');
         search.removeEventListener('submit', searchClick, false);
       }
     };
@@ -65,13 +59,13 @@ const CardList = () => {
   }, [searchString]);
   return (
     <>
-      {isLoading ? (
+      {isFetching ? (
         <div>Loading...</div>
       ) : (
         <>
           <h1>Monsters</h1>
           <CardListStyled>
-            {personsSW
+            {data?.results
               .filter((person) => person.name.includes(searchString))
               .map((person, index) => {
                 return (
